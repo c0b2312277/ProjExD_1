@@ -17,6 +17,10 @@ def main():
     kt1_rct = kt1_img.get_rect() # 画像の中心を抽出
     kt1_rct .center=300,200 # 中心を300,200に設定
 
+    move_ud=0
+    move_rl=0
+    speed=1
+
     tmr = 0
     while True:
         for event in pg.event.get():
@@ -42,17 +46,36 @@ def main():
         #     kt1_rct.move_ip((-1,0))
 
         # 演習課題1
+        # key_lst=pg.key.get_pressed() # 全てのキーの押下状態の取得
+        # if key_lst[pg.K_UP]:
+        #     kt1_rct.move_ip((0,-1))
+        # if key_lst[pg.K_DOWN]:
+        #     kt1_rct.move_ip((0,1))
+        # if key_lst[pg.K_RIGHT]:
+        #     kt1_rct.move_ip((2,0))
+        # if key_lst[pg.K_LEFT]:
+        #     kt1_rct.move_ip((-2,0))
+        # else:
+        #     kt1_rct.move_ip((-1,0))
+
+
+        # 演習課題2
         key_lst=pg.key.get_pressed() # 全てのキーの押下状態の取得
-        if key_lst[pg.K_UP]:
-            kt1_rct.move_ip((0,-1))
-        if key_lst[pg.K_DOWN]:
-            kt1_rct.move_ip((0,1))
-        if key_lst[pg.K_RIGHT]:
-            kt1_rct.move_ip((2,0))
-        if key_lst[pg.K_LEFT]:
-            kt1_rct.move_ip((-1,0))
-        else:
-            kt1_rct.move_ip((-1,0))
+        move_px=(-1,0)
+        if (key_lst[pg.K_UP]==True)and(key_lst[pg.K_RIGHT]==True):
+            move_px=(speed*2,-1)
+        elif (key_lst[pg.K_DOWN]==True)and(key_lst[pg.K_RIGHT]==True):
+            move_px=(speed*2,1)
+        elif key_lst[pg.K_UP]:
+            move_px=(-speed,-speed)           
+        elif key_lst[pg.K_DOWN]:
+            move_px=(-speed,speed)
+        elif key_lst[pg.K_RIGHT]:
+            move_px=(speed*2,0)
+        elif key_lst[pg.K_LEFT]:
+            move_px=(-speed*2,0)
+
+        kt1_rct.move_ip(move_px)           
 
         screen.blit(kt1_img,kt1_rct) # 画像の表示(kt1_rctの位置にする)
 
