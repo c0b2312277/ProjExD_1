@@ -30,14 +30,28 @@ def main():
         screen.blit(bg_img, [-x+3200, 0]) # 背景画像の貼り付け(表示)
         screen.blit(bg_flip_img,[-x+4800,0])
         
-        key_lst = pg.key.get_pressed() # キーの押下状態を取得
+        # 練習問題
+        # key_lst = pg.key.get_pressed() # キーの押下状態を取得
+        # if key_lst[pg.K_UP]:
+        #     kt1_rct.move_ip((0,-1))
+        # if key_lst[pg.K_DOWN]:
+        #     kt1_rct.move_ip((0,1))
+        # if key_lst[pg.K_RIGHT]:
+        #     kt1_rct.move_ip((1,0))
+        # if key_lst[pg.K_LEFT]:
+        #     kt1_rct.move_ip((-1,0))
+
+        # 演習課題1
+        key_lst=pg.key.get_pressed() # 全てのキーの押下状態の取得
         if key_lst[pg.K_UP]:
             kt1_rct.move_ip((0,-1))
         if key_lst[pg.K_DOWN]:
             kt1_rct.move_ip((0,1))
         if key_lst[pg.K_RIGHT]:
-            kt1_rct.move_ip((1,0))
+            kt1_rct.move_ip((2,0))
         if key_lst[pg.K_LEFT]:
+            kt1_rct.move_ip((-1,0))
+        else:
             kt1_rct.move_ip((-1,0))
 
         screen.blit(kt1_img,kt1_rct) # 画像の表示(kt1_rctの位置にする)
