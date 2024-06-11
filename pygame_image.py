@@ -14,6 +14,8 @@ def main():
     bg_flip_img=pg.transform.flip(bg_img,True,False) # 背景の左右反転
     kt1_img=pg.image.load("fig/3.png")
     kt1_img=pg.transform.flip(kt1_img,True,False)
+    kt1_rct = kt1_img.get_rect() # 画像の中心を抽出
+    kt1_rct .center=300,200 # 中心を300,200に設定
 
     tmr = 0
     while True:
@@ -27,8 +29,17 @@ def main():
         screen.blit(bg_flip_img,[-x+1600,0])
         screen.blit(bg_img, [-x+3200, 0]) # 背景画像の貼り付け(表示)
         screen.blit(bg_flip_img,[-x+4800,0])
-        kt1_rct = kt1_img.get_rect() # 画像の中心を抽出
-        kt1_rct .center=300,200 # 中心を300,200に設定
+        
+        key_lst = pg.key.get_pressed() # キーの押下状態を取得
+        if key_lst[pg.K_UP]:
+            kt1_rct.move_ip((0,-1))
+        if key_lst[pg.K_DOWN]:
+            kt1_rct.move_ip((0,1))
+        if key_lst[pg.K_RIGHT]:
+            kt1_rct.move_ip((1,0))
+        if key_lst[pg.K_LEFT]:
+            kt1_rct.move_ip((-1,0))
+
         screen.blit(kt1_img,kt1_rct) # 画像の表示(kt1_rctの位置にする)
 
         pg.display.update()
